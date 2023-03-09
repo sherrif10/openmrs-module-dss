@@ -1,0 +1,11 @@
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/api/dao/DssDao.java
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/DssActivator.java
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/api/model/Symptom.java
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/api/SymptomService.java
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/api/impl/DssServiceImpl.java
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/api/DssService.java
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/api/dao/impl/SymptomDaoImpl.java
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/api/dao/SymptomDao.java
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/Item.java
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/api/impl/SymptomServiceImpl.java
+/home/sharif/Desktop/el/dss/api/src/main/java/org/openmrs/module/dss/DssConfig.java
