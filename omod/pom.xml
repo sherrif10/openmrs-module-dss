@@ -29,7 +29,12 @@
 			<scope>provided</scope>
 			<classifier>tests</classifier>
 		</dependency>
-
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>legacyui-omod</artifactId>
+            <version>1.2.3</version>
+            <scope>provided</scope>
+        </dependency>
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>uiframework-api</artifactId>
