@@ -12,6 +12,10 @@ public class SymptomServiceImpl extends BaseOpenmrsService implements SymptomSer
 	
 	private SymptomDao symptomDao;
 	
+	public void setSymptomDao(SymptomDao symptomDao) {
+		this.symptomDao = symptomDao;
+	}
+	
 	@Override
 	@Transactional(readOnly = true)
 	public Symptom findSymptomById(Integer symptomId) {

@@ -32,6 +32,11 @@
 		<require_module version="${appuiVersion}">
 			org.openmrs.module.appui
 		</require_module>
+        <require_module version="${legacyuiVersion}">
+		   org.openmrs.module.legacyui
+		</require_module>
+
+
 	</require_modules>
 	
 	<!-- Extensions -->

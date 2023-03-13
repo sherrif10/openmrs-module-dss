@@ -67,8 +67,10 @@
 
 	<properties>
 		<openmrsPlatformVersion>2.2.0</openmrsPlatformVersion>
-		<webservicesRestVersion>2.29.0</webservicesRestVersion>
-		 <gsonVersion>2.10.1</gsonVersion>
-		 <lombokVersion>1.18.20</lombokVersion>
+        <openMRSRuntimeVersion>1.9.3</openMRSRuntimeVersion>
+		<openMRSVersion>2.0.4</openMRSVersion>
+		<webservicesRestVersion>2.29.0.b675eb</webservicesRestVersion>
+		<gsonVersion>2.10.1</gsonVersion>
+		<lombokVersion>1.18.20</lombokVersion>
 	</properties>
 </project>

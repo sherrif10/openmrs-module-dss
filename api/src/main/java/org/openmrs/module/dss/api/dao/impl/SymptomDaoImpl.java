@@ -8,10 +8,18 @@ import org.openmrs.api.db.hibernate.DbSession;
 import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.openmrs.module.dss.api.dao.SymptomDao;
 import org.openmrs.module.dss.api.model.Symptom;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class SymptomDaoImpl implements SymptomDao {
 	
-	private DbSessionFactory dbSessionFactory;
+	@Autowired
+	DbSessionFactory dbSessionFactory;
+	
+	public void setDbSessionFactory(DbSessionFactory dbSessionFactory) {
+		this.dbSessionFactory = dbSessionFactory;
+	}
 	
 	private Class mappedClass;
 	
@@ -59,10 +67,6 @@ public class SymptomDaoImpl implements SymptomDao {
 	
 	private DbSession getSession() {
 		return dbSessionFactory.getCurrentSession();
-	}
-	
-	public void setDbSessionFactory(DbSessionFactory dbSessionFactory) {
-		this.dbSessionFactory = dbSessionFactory;
 	}
 	
 }
