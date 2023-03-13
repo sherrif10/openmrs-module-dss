@@ -13,7 +13,6 @@
         for a list of supported elements and attributes
     -->
  
- 
 <changeSet id ="add_dss_20220125" author="sharif Magembe">
      <validCheckSum>8:4682452d702260de8e05cb47ac6f184e</validCheckSum>
 	 <preConditions onFail="MARK_RAN">
@@ -33,7 +32,7 @@
             <column name="lossOfSmell" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="painFulBreathing" type="varchar(255">
+            <column name="painFulBreathing" type="varchar(255)">
 			   <constraints nullable="false"/>
 			</column>
     

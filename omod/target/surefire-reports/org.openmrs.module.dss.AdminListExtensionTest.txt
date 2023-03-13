@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: org.openmrs.module.dss.api.DssServiceTest
+Test set: org.openmrs.module.dss.AdminListExtensionTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.255 sec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.135 sec
