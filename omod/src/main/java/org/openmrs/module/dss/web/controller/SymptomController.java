@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/dss")
+@RequestMapping(value = "/module/dss/dss")
 public class SymptomController {
 	
-	@RequestMapping(value = "/dss/Create", method = RequestMethod.POST)
+	@RequestMapping(value = "/module/dss/dss", method = RequestMethod.POST)
 	public Symptom createSymptoms(Model model) {
 		return null;
 	}

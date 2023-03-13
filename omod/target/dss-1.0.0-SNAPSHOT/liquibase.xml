@@ -13,8 +13,10 @@
         for a list of supported elements and attributes
     -->
  
-<changeSet id ="add_dss_20220125" author="sharif Magembe">
-     <validCheckSum>8:4682452d702260de8e05cb47ac6f184e</validCheckSum>
+<changeSet id ="20101209-1723" author="sharif Magembe">
+<validCheckSum>db17937286d48f680b2be16bee24e62</validCheckSum> <!-- old checksum without specifying date_created -->
+    <validCheckSum>973b989a68ac78da3fc7d9dc492dc45b</validCheckSum> <!-- current checksum with date_created property added -->
+</changeSet>
 	 <preConditions onFail="MARK_RAN">
             <not><tableExists tableName="dss_symptom"/></not>
         </preConditions>
@@ -32,7 +34,7 @@
             <column name="lossOfSmell" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="painFulBreathing" type="varchar(255")>
+            <column name="painFulBreathing" type="varchar(255)">
 			   <constraints nullable="false"/>
 			</column>
     

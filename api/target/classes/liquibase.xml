@@ -13,8 +13,9 @@
         for a list of supported elements and attributes
     -->
  
-<changeSet id ="add_dss_20220125" author="sharif Magembe">
-     <validCheckSum>8:4682452d702260de8e05cb47ac6f184e</validCheckSum>
+<changeSet id ="20220125" author="sharif Magembe">
+    <validCheckSum>8:f2489598375c26503210d38f659c6e1d</validCheckSum>
+    <validCheckSum>8:9a57de3d29ed6311f47d519adb27038f</validCheckSum></changeSet>
 	 <preConditions onFail="MARK_RAN">
             <not><tableExists tableName="dss_symptom"/></not>
         </preConditions>
