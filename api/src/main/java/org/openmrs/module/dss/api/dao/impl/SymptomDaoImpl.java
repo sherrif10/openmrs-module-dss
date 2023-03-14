@@ -8,13 +8,14 @@ import org.openmrs.api.db.hibernate.DbSession;
 import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.openmrs.module.dss.api.dao.SymptomDao;
 import org.openmrs.module.dss.api.model.Symptom;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@SuppressWarnings("unchecked")
 public class SymptomDaoImpl implements SymptomDao {
 	
-	@Autowired
+	//@Autowired
 	DbSessionFactory dbSessionFactory;
 	
 	public void setDbSessionFactory(DbSessionFactory dbSessionFactory) {

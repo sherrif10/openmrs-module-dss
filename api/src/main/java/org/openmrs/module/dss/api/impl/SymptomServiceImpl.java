@@ -8,6 +8,7 @@ import org.openmrs.module.dss.api.dao.SymptomDao;
 import org.openmrs.module.dss.api.model.Symptom;
 import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public class SymptomServiceImpl extends BaseOpenmrsService implements SymptomService {
 	
 	private SymptomDao symptomDao;
