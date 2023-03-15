@@ -56,20 +56,26 @@
         </property>
     </bean>
 
-<bean id ="symptomDao" class="org.openmrs.module.dss.api.dao.impl.SymptomDaoImpl">
+
+
+
+
+
+<bean id="symptomDao" class="org.openmrs.module.dss.api.dao.impl.SymptomDaoImpl">
   <property name="dbSessionFactory">
     <ref bean="dbSessionFactory"/>
    </property>
 </bean>
-   <bean id="dss.SymptomService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-        <property name="transactionManager" ref bean="transactionManager"/>
+   <bean id="SymptomService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
         <property name="target">
             <bean class="org.openmrs.module.dss.api.impl.SymptomServiceImpl">
                 <property name="symptomDao" ref="symptomDao"/>
             </bean>
         </property>
-        <property name="preInterceptor" ref bean="serviceInterceptors"/>
-        <property name="transactionAttributeSource" ref bean="transactionAttributeSource"/>
+        <property name="preInterceptors" ref="serviceInterceptors"/>
+        <property name="transactionAttributeSource" ref="transactionAttributeSource"/>
     </bean>
     <bean parent="serviceContext">
         <property name="moduleService">
