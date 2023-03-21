@@ -56,11 +56,6 @@
         </property>
     </bean>
 
-
-
-
-
-
 <bean id="symptomDao" class="org.openmrs.module.dss.api.dao.impl.SymptomDaoImpl">
   <property name="dbSessionFactory">
     <ref bean="dbSessionFactory"/>

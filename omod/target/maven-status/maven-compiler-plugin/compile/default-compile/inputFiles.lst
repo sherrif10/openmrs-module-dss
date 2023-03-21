@@ -2,3 +2,4 @@
 /home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/web/controller/DssController.java
 /home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/fragment/controller/UsersFragmentController.java
 /home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/web/controller/SymptomController.java
+/home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/resources/SymptomResource.java

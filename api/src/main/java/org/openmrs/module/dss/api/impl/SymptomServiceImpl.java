@@ -1,7 +1,9 @@
 package org.openmrs.module.dss.api.impl;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.dss.api.SymptomService;
 import org.openmrs.module.dss.api.dao.SymptomDao;
@@ -23,7 +25,7 @@ public class SymptomServiceImpl extends BaseOpenmrsService implements SymptomSer
 		return symptomDao.findSymptomById(symptomId);
 	}
 	
-	@Override
+	//@Override
 	@Transactional
 	public List<Symptom> retriveAll(List<Symptom> symptom) {
 		return symptomDao.retriveAll(symptom);
@@ -35,7 +37,6 @@ public class SymptomServiceImpl extends BaseOpenmrsService implements SymptomSer
 		return symptomDao.saveOrUpdate(symptoms);
 	}
 	
-	@Override
 	public Symptom Update(Symptom symptoms) throws Exception {
 		symptoms = symptomDao.findSymptomById(symptoms.getId());
 		if (null == symptoms) {
@@ -70,6 +71,16 @@ public class SymptomServiceImpl extends BaseOpenmrsService implements SymptomSer
 	@Override
 	public void purgeSymptoms(Symptom symptoms) {
 		symptomDao.purgeSymptoms(symptoms);
+	}
+	
+	//@Override
+	public List<Symptom> retriveAll(Symptom symptom) {
+		throw new UnsupportedOperationException("Unimplemented method 'retriveAll'");
+	}
+	
+	@Override
+	public Optional<Symptom> getByUniqueId(String uniqueId) throws APIException {
+		throw new UnsupportedOperationException("Unimplemented method 'getByUniqueId'");
 	}
 	
 }

@@ -38,6 +38,25 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+			  <dependency>
+                <groupId>org.openmrs.module</groupId>
+                <artifactId>webservices.rest-omod</artifactId>
+                <version>${webservicesRestVersion}</version>
+                <scope>provided</scope>
+            </dependency>
+			 <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>2.2</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.openmrs.module</groupId>
+                <artifactId>webservices.rest-omod-common</artifactId>
+                <version>${webservicesRestVersion}</version>
+                <scope>provided</scope>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -69,7 +88,7 @@
 		<openmrsPlatformVersion>2.2.0</openmrsPlatformVersion>
         <openMRSRuntimeVersion>1.9.3</openMRSRuntimeVersion>
 		<openMRSVersion>2.0.4</openMRSVersion>
-		<webservicesRestVersion>2.29.0.b675eb</webservicesRestVersion>
+		<webservicesRestVersion>2.29.0</webservicesRestVersion>
 		<gsonVersion>2.10.1</gsonVersion>
 		<lombokVersion>1.18.20</lombokVersion>
 	</properties>
