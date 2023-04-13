@@ -1,4 +1,5 @@
 # openmrs-module-dss
-Decision support system for supporting Artificial intelligency model with RestEnd Points
+Decision support system for supporting Artificial intelligency(COAST) 
 
-<img src="/dss/ac.png" alt="My cool logo"/>
+ ![Achitechural diagram](ac.png)
+ <img src="/dss/ac.png" alt="My cool logo"/>
