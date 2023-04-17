@@ -1,2 +1,3 @@
 org/openmrs/module/dss/api/dao/DssDaoTest.class
 org/openmrs/module/dss/api/DssServiceTest.class
+org/openmrs/module/dss/api/SymptomServiceTest.class
