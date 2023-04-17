@@ -3,61 +3,35 @@ package org.openmrs.module.dss.api.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import org.openmrs.BaseOpenmrsMetadata;
 
-@Entity(name = "dss_symptom")
+@Entity
 @Table(name = "dss_symptom")
 public class Symptom extends BaseOpenmrsMetadata {
 	
-	@Override
-	public String toString() {
-		return "Symptom [id=" + id + ", fever=" + fever + ", MuscleAches=" + MuscleAches + ", LossOfSmell=" + LossOfSmell
-		        + ", PainFulBreathing=" + PainFulBreathing + ", ShortnessOfBreath=" + ShortnessOfBreath + ", JointAches="
-		        + JointAches + ", RunnyNose=" + RunnyNose + ", OtherNueral=" + OtherNueral
-		        + ", RelationshipWithContactPerson=" + RelationshipWithContactPerson + ", Diabetes=" + Diabetes
-		        + ", SoreThroats=" + SoreThroats + ", LossOfTaste=" + LossOfTaste + ", Occupation=" + Occupation
-		        + ", Vomiting=" + Vomiting + ", Nuesea=" + Nuesea + ", Rash=" + Rash + "]";
-	}
+	private static final long serialVersionUID = 1L;
 	
-	public Symptom(Integer id, String fever, String muscleAches, String lossOfSmell, String painFulBreathing,
-	    String shortnessOfBreath, String jointAches, String runnyNose, String otherNueral,
-	    String relationshipWithContactPerson, String diabetes, String soreThroats, String lossOfTaste, String occupation,
-	    String vomiting, String nuesea, String rash) {
-		this.id = id;
-		this.fever = fever;
-		MuscleAches = muscleAches;
-		LossOfSmell = lossOfSmell;
-		PainFulBreathing = painFulBreathing;
-		ShortnessOfBreath = shortnessOfBreath;
-		JointAches = jointAches;
-		RunnyNose = runnyNose;
-		OtherNueral = otherNueral;
-		RelationshipWithContactPerson = relationshipWithContactPerson;
-		Diabetes = diabetes;
-		SoreThroats = soreThroats;
-		LossOfTaste = lossOfTaste;
-		Occupation = occupation;
-		Vomiting = vomiting;
-		Nuesea = nuesea;
-		Rash = rash;
+	public Symptom() {
 	}
 	
 	@Id
-	@GeneratedValue
-	@Column(name = "dss_symptom_id")
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JoinColumn(name = "dss_symptom_id")
+	private Integer symptomId;
 	
 	@Override
 	public Integer getId() {
-		return id;
+		return symptomId;
 	}
 	
 	@Override
 	public void setId(Integer id) {
-		this.id = id;
+		this.symptomId = id;
 	}
 	
 	@Column(name = "fever")
@@ -107,11 +81,6 @@ public class Symptom extends BaseOpenmrsMetadata {
 	
 	@Column(name = "rash")
 	public String Rash;
-	
-	//our constructor below
-	
-	public Symptom() {
-	}
 	
 	public String getFever() {
 		return fever;

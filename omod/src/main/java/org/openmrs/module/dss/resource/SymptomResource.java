@@ -1,4 +1,4 @@
-package org.openmrs.module.dss.resources;
+package org.openmrs.module.dss.resource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +17,7 @@ import org.openmrs.module.webservices.rest.web.representation.FullRepresentation
 import org.openmrs.module.webservices.rest.web.representation.RefRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.Representation;
 import org.openmrs.module.webservices.rest.web.resource.impl.DataDelegatingCrudResource;
+import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingCrudResource;
 import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceDescription;
 import org.openmrs.module.webservices.rest.web.resource.impl.MetadataDelegatingCrudResource;
 import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
@@ -40,7 +41,7 @@ import org.openmrs.module.webservices.rest.web.RestConstants;
 @SuppressWarnings("unused")
 @Resource(name = RestConstants.VERSION_1 + "/symptom", supportedClass = Symptom.class, supportedOpenmrsVersions = { "1.9.*",
         "1.10.*", "1.11.*", "1.12.*", "2.0.*", "2.1.*", "2.2.*", "2.3.*", "2.4.*", "2.5.*", "2.6.*" })
-public class SymptomResource extends MetadataDelegatingCrudResource<Symptom> {
+public class SymptomResource extends DelegatingCrudResource<Symptom> {
 	
 	private SymptomService symptomService;
 	
@@ -51,7 +52,7 @@ public class SymptomResource extends MetadataDelegatingCrudResource<Symptom> {
 	
 	@Override
 	public NeedsPaging<Symptom> doGetAll(RequestContext requestContext) throws ResponseException {
-		return new NeedsPaging<Symptom>(new ArrayList<Symptom>(Context.getService(SymptomService.class).retriveAll(null)),
+		return new NeedsPaging<Symptom>(new ArrayList<Symptom>(Context.getService(SymptomService.class).retriveAll()),
 		        requestContext);
 	}
 	
@@ -79,7 +80,6 @@ public class SymptomResource extends MetadataDelegatingCrudResource<Symptom> {
 			description.addProperty("Rash");
 			
 			description.addSelfLink();
-			description.addLink("full", ".?v=" + RestConstants.REPRESENTATION_FULL);
 			return description;
 		} else if (rep instanceof FullRepresentation) {
 			DelegatingResourceDescription description = new DelegatingResourceDescription();
@@ -98,11 +98,24 @@ public class SymptomResource extends MetadataDelegatingCrudResource<Symptom> {
 			description.addProperty("Nuesea");
 			description.addProperty("Rash");
 			description.addSelfLink();
+			description.addLink("full", ".?v=" + RestConstants.REPRESENTATION_FULL);
 			return description;
 		} else if (rep instanceof RefRepresentation) {
 			DelegatingResourceDescription description = new DelegatingResourceDescription();
 			description.addProperty("uuid");
-			description.addProperty("fever");
+			description.addProperty("MuscleAches");
+			description.addProperty("LossOfSmell");
+			description.addProperty("PainFulBreathing");
+			description.addProperty("ShortnessOfBreath");
+			description.addProperty("JointAches");
+			description.addProperty("RunnyNose");
+			description.addProperty("OtherNueral");
+			description.addProperty("SoreThroats");
+			description.addProperty("LossOfTaste");
+			description.addProperty("Occupation");
+			description.addProperty("Vomiting");
+			description.addProperty("Nuesea");
+			description.addProperty("Rash");
 			description.addSelfLink();
 			return description;
 		}
@@ -194,14 +207,14 @@ public class SymptomResource extends MetadataDelegatingCrudResource<Symptom> {
 	
 	@Override
 	public Model getCREATEModel(Representation representation) {
-		ModelImpl model = new ModelImpl().property("fever", new ArrayProperty(new RefProperty("#/definitions/FeverCreate")))
-		        .property("MuscleAches", new ArrayProperty(new RefProperty("#/definitions/MuscleAchesCreate")))
-		        .property("LossOfSmell", new RefProperty("#/definitions/LossOfSmellGetRef"))
-		        .property("PainFulBreathing", new RefProperty("#/definitions/PainFulBreathingGetRef"))
-		        .property("ShortnessOfBreath", new RefProperty("#/definitions/ShortnessOfBreathGetRef"))
-		        .property("MuscleAches", new RefProperty("#/definitions/MuscleAchesGetRef"))
-		        .property("Nuesea", new RefProperty("#/definitions/NueseaGetRef"))
-		        .property("Rash", new RefProperty("#/definitions/RashGetRef"));
+		ModelImpl model = new ModelImpl().property("fever", new ArrayProperty(new RefProperty("#/definitions/UserCreate")))
+		        .property("MuscleAches", new ArrayProperty(new RefProperty("#/definitions/UserCreate")))
+		        .property("LossOfSmell", new RefProperty("#/definitions/UserLossOfSmell"))
+		        .property("PainFulBreathing", new RefProperty("#/definitions/UserPainFulBreathing"))
+		        .property("ShortnessOfBreath", new RefProperty("#/definitions/UserShortnessOfBreath"))
+		        .property("MuscleAches", new RefProperty("#/definitions/UserMuscleAches"))
+		        .property("Nuesea", new RefProperty("#/definitions/UserNuesea"))
+		        .property("Rash", new RefProperty("#/definitions/UserRash"));
 		
 		model.setRequired(Arrays.asList("fever", "response"));
 		model.setRequired(Arrays.asList("muscleAches", "response"));
@@ -251,36 +264,18 @@ public class SymptomResource extends MetadataDelegatingCrudResource<Symptom> {
 		return new Symptom();
 	}
 	
-	public Symptom saveOrUpdate(Symptom symptom) {
+	public Symptom saveOrUpdate(Symptom symptom) throws Exception {
 		return Context.getService(SymptomService.class).saveOrUpdate(symptom);
 	}
 	
 	@Override
 	public void delete(Symptom delegate, String reason, RequestContext context) throws ResponseException {
-		if (!this.symptomService.getByUniqueId(delegate.getUuid()).isPresent()) {
-			this.symptomService.deleteAll();
-			return; //  delete is idempotent, so we return success here
-		}
-		Context.getService(SymptomService.class).deleteAll();
+		Context.getService(SymptomService.class).purgeSymptoms(delegate);
 	}
 	
 	@Override
 	public void purge(Symptom delegate, RequestContext context) throws ResponseException {
-		this.symptomService.purgeSymptoms(delegate);
-	}
-	
-	@Override
-	public Symptom save(Symptom symptom) {
-		return Context.getService(SymptomService.class).saveOrUpdate(symptom);
-	}
-	
-	@Override
-	public Symptom getByUniqueId(@NotNull String uuid) {
-		Optional<Symptom> optionalSymptom = symptomService.getByUniqueId(uuid);
-		if (!optionalSymptom.isPresent()) {
-			throw new ObjectNotFoundException();
-		}
-		return optionalSymptom.get();
+		
 	}
 	
 	@PropertyGetter("display")
@@ -293,4 +288,35 @@ public class SymptomResource extends MetadataDelegatingCrudResource<Symptom> {
 		return "2.3";
 	}
 	
+	@Override
+	public Symptom save(Symptom symptom) {
+		return Context.getService(SymptomResource.class).save(symptom);
+	}
+	
+	public Symptom getByUniqueId(Integer uniqueId) {
+		return this.symptomService.getSymptomById(uniqueId);
+		
+	}
+	
+	@Override
+	public Symptom getByUniqueId(String uniqueId) {
+		Symptom symptom = null;
+		Integer id = null;
+		
+		symptom = Context.getService(SymptomService.class).getSymptomById(id);
+		if (symptom == null && uniqueId != null) {
+			try {
+				id = Integer.parseInt(uniqueId);
+			}
+			catch (Exception e) {}
+			if (id != null) {
+				symptom = Context.getService(SymptomService.class).getSymptomById(id);
+			}
+		}
+		return symptom;
+	}
+	
+	public List<Representation> getAvailablRepresentations() {
+		return Arrays.asList(Representation.DEFAULT, Representation.FULL);
+	}
 }

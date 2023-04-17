@@ -1,13 +1,15 @@
 package org.openmrs.module.dss.api.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
+import org.openmrs.api.db.OpenmrsMetadataDAO;
 import org.openmrs.module.dss.api.model.Symptom;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
-public interface SymptomDao extends Serializable {
+/**
+ * This is DAO For symtom entity.
+ */
+public interface SymptomDao extends OpenmrsMetadataDAO<Symptom> {
 	
 	/**
 	 * Find a symptom using the symptom id
@@ -16,10 +18,10 @@ public interface SymptomDao extends Serializable {
 	 * @return the symptom object
 	 */
 	@Transactional(readOnly = true)
-	Symptom findSymptomById(Integer symptomId);
+	Symptom getSymptomById(Integer symptomId);
 	
 	@Transactional(readOnly = true)
-	public List<Symptom> retriveAll(List<Symptom> symptom);
+	List<Symptom> retriveAll();
 	
 	@Transactional(readOnly = true)
 	public Symptom saveOrUpdate(Symptom symptoms);
@@ -27,9 +29,8 @@ public interface SymptomDao extends Serializable {
 	public Symptom Update(Symptom symptoms);
 	
 	@Transactional(readOnly = true)
-	public void deleteAll();
-	
-	@Transactional(readOnly = true)
 	public void purgeSymptoms(Symptom symptoms);
+	
+	Symptom findByFeverAndNuesea(String fever, String nuesea);
 	
 }
