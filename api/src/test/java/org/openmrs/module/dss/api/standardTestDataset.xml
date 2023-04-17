@@ -1,4 +1,0 @@
-<!--Patient Queue-->
-	<dss_symptom  dss_symptom_id="1"    fever="fever"  muscleAches="muscleAches" lossOfSmell="lossOfSmell" painFulBreathing="painFulBreathing"  date_created="2019-10-07 18:53:56"  changed_by="1"  date_changed="2019-10-07 19:05:56"  voided="0"  creator="1"  uuid="4102d6e2-9fb4-4084-b412-8e3838479170"/>
-    <dss_symptom  dss_symptom_id="2"    fever="fever1"  muscleAches="muscleAches1" lossOfSmell="lossOfSmell1" painFulBreathing="painFulBreathing1"  date_created="2019-10-07 18:53:56"  changed_by="1"  date_changed="2019-10-07 19:05:56"  voided="0"  creator="1"  uuid="4102d6e2-9fb4-4084-b412-8e3838479170"/>
-
