@@ -1,20 +1,18 @@
 package org.openmrs.module.dss.api.impl;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.dss.api.SymptomService;
 import org.openmrs.module.dss.api.dao.SymptomDao;
 import org.openmrs.module.dss.api.model.Symptom;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * @author sharif
- */
+@Transactional
 public class SymptomServiceImpl extends BaseOpenmrsService implements SymptomService {
 	
-	@Autowired
 	private SymptomDao symptomDao;
 	
 	public void setSymptomDao(SymptomDao symptomDao) {
@@ -22,14 +20,52 @@ public class SymptomServiceImpl extends BaseOpenmrsService implements SymptomSer
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
+	public Symptom findSymptomById(Integer symptomId) {
+		return symptomDao.findSymptomById(symptomId);
+	}
+	
+	//@Override
 	@Transactional
-	public Symptom saveOrUpdate(Symptom symptoms) throws Exception {
-		return symptomDao.saveOrUpdate(symptoms);
+	public List<Symptom> retriveAll(List<Symptom> symptom) {
+		return symptomDao.retriveAll(symptom);
 	}
 	
 	@Override
+	@Transactional
+	public Symptom saveOrUpdate(Symptom symptoms) {
+		return symptomDao.saveOrUpdate(symptoms);
+	}
+	
 	public Symptom Update(Symptom symptoms) throws Exception {
+		symptoms = symptomDao.findSymptomById(symptoms.getId());
+		if (null == symptoms) {
+			throw new IllegalArgumentException("Invalid symptoms {} " + symptoms);
+		}
+		symptoms.setDiabetes(symptoms.getDiabetes());
+		symptoms.setFever(symptoms.getFever());
+		symptoms.setJointAches(symptoms.getLossOfSmell());
+		symptoms.setLossOfSmell(symptoms.getLossOfSmell());
+		symptoms.setMuscleAches(symptoms.getMuscleAches());
+		symptoms.setNuesea(symptoms.getNuesea());
+		symptoms.setOccupation(symptoms.getOccupation());
+		symptoms.setOtherNueral(symptoms.getOtherNueral());
+		symptoms.setPainFulBreathing(symptoms.getPainFulBreathing());
+		symptoms.setRash(symptoms.getRash());
+		symptoms.setRelationshipWithContactPerson(symptoms.getRelationshipWithContactPerson());
+		symptoms.setRunnyNose(symptoms.getRunnyNose());
+		symptoms.setShortnessOfBreath(symptoms.getShortnessOfBreath());
+		symptoms.setSoreThroats(symptoms.getSoreThroats());
+		
+		if (null == symptoms.getId()) {
+			symptoms.setId(symptoms.getId());
+		}
 		return symptomDao.Update(symptoms);
+	}
+	
+	@Override
+	public void deleteAll() {
+		symptomDao.deleteAll();
 	}
 	
 	@Override
@@ -37,18 +73,14 @@ public class SymptomServiceImpl extends BaseOpenmrsService implements SymptomSer
 		symptomDao.purgeSymptoms(symptoms);
 	}
 	
-	/**
-	 * @see org.openmrs.module.dss.api.SymptomService#retrieve(org.openmrs.module.symptom.model.Symptom)
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<Symptom> retriveAll() {
-		return symptomDao.retriveAll();
+	//@Override
+	public List<Symptom> retriveAll(Symptom symptom) {
+		throw new UnsupportedOperationException("Unimplemented method 'retriveAll'");
 	}
 	
 	@Override
-	public Symptom getSymptomById(Integer symptomId) {
-		return symptomDao.getSymptomById(symptomId);
+	public Optional<Symptom> getByUniqueId(String uniqueId) throws APIException {
+		throw new UnsupportedOperationException("Unimplemented method 'getByUniqueId'");
 	}
 	
 }

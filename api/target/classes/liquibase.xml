@@ -14,8 +14,8 @@
     -->
  
 <changeSet id ="20220125" author="sharif Magembe">
-     <validCheckSum>3:973b989a68ac78da3fc7d9dc492dc45b</validCheckSum>
-    <validCheckSum>3:f49ec1c3d5c9c180402ceec5fc4a5f18</validCheckSum>
+ <validCheckSum>8:f2489598375c26503210d38f659c6e1d</validCheckSum>
+     <validCheckSum>8:9a57de3d29ed6311f47d519adb27038f</validCheckSum>
 	 <preConditions onFail="MARK_RAN">
             <not><tableExists tableName="dss_symptom"/></not>
         </preConditions>
@@ -24,39 +24,55 @@
             <column name="dss_symptom_id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" unique="true"/>
             </column> 
-            <column name="fever" type="VARCHAR(255)">
+            <column name="fever" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
-            <column name="muscleAches" type="VARCHAR(255)">
+            <column name="muscleAches" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
-            <column name="lossOfSmell" type="VARCHAR(255)">
+            <column name="lossOfSmell" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
-            <column name="painFulBreathing" type="VARCHAR(255)">
+            <column name="painFulBreathing" type="varchar(255)">
+			   <constraints nullable="false"/>
 			</column>
     
-            <column name="shortnessOfBreath" type="VARCHAR(255)">
+            <column name="shortnessOfBreath" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
-			 <column name="jointAches" type="VARCHAR(255)">
+			 <column name="jointAches" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
             
-            <column name="runnyNose" type="VARCHAR(255)">
+            <column name="runnyNose" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
-            <column name="otherNueral" type="VARCHAR(255)">
+            <column name="otherNueral" type="varchar(255)">
+			     <constraints nullable="false"/>
 			</column>
-            <column name="relationshipWithContactPerson" type="VARCHAR(255)">
+            <column name="relationshipWithContactPerson" type="varchar(255)">
+			 <constraints nullable="false"/>
 			</column>
-            <column name="diabetes" type="VARCHAR(255)">
+            <column name="diabetes" type="varchar(255)">
+			        <constraints nullable="false"/>
 			</column>
-            <column name="soreThroats" type="VARCHAR(255)">
+            <column name="soreThroats" type="varchar(255)">
+			     <constraints nullable="false"/>
 			</column>
-            <column name="lossOfTaste" type="VARCHAR(255)">
+            <column name="lossOfTaste" type="varchar(255)">
+			        <constraints nullable="false"/>
 			</column>
-            <column name="occupation" type="VARCHAR(255)">
+            <column name="occupation" type="varchar(255)">
+			     <constraints nullable="false"/>
 			</column>
-			<column name="vomting" type="VARCHAR(255)">
+			<column name="vomting" type="varchar(255)">
+			        <constraints nullable="false"/>
 			</column>
-            <column name="nuesea" type="VARCHAR(255)">
+            <column name="nuesea" type="varchar(255)">
+			    <constraints nullable="false"/>
 			</column>
-            <column name="rash" type="VARCHAR(255)">
+            <column name="rash" type="varchar(255)">
+			      <constraints nullable="false"/>
 			</column>
            <column name="creator" type="int">
                 <constraints nullable="false"/>
@@ -76,6 +92,16 @@
                 <constraints nullable="false" unique="true"/>
             </column>
 		</createTable>
+        
+<addForeignKeyConstraint baseTableName="dss_symptom" baseColumnNames="creator"
+                                 constraintName="dss_symptom_creator_fk"
+                                 referencedTableName="users" referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="dss_symptom" baseColumnNames="changed_by"
+                                 constraintName="dss_symptom_changed_by_fk"
+                                 referencedTableName="users" referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="dss_symptom" baseColumnNames="retired_by"
+                                 constraintName="dsssymptom__retired_by_fk"
+                                 referencedTableName="users" referencedColumnNames="user_id"/>
 	</changeSet>
 
 
