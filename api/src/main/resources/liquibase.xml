@@ -65,7 +65,7 @@
             <column name="occupation" type="varchar(255)">
 			     <constraints nullable="false"/>
 			</column>
-			<column name="vomting" type="varchar(255)">
+			<column name="vomiting" type="varchar(255)">
 			        <constraints nullable="false"/>
 			</column>
             <column name="nuesea" type="varchar(255)">
