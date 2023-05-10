@@ -18,4 +18,6 @@ import org.springframework.stereotype.Component;
 public class DssConfig {
 	
 	public final static String MODULE_PRIVILEGE = "Dss Privilege";
+	
+	public static final String MODULE_ID = "dss";
 }
