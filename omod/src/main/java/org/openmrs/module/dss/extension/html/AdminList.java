@@ -15,8 +15,6 @@ import java.util.Map;
 import org.openmrs.module.Extension;
 import org.openmrs.module.web.extension.AdministrationSectionExt;
 
-//import org.openmrs.module.web.extension.AdministrationSectionExt;
-
 /**
  * This class defines the links that will appear on the administration page under the "dss.title"
  * heading. This extension is enabled by defining (uncommenting) it in the config.xml file.
@@ -44,8 +42,7 @@ public class AdminList extends AdministrationSectionExt {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
-		map.put("module/dss/dss.form", "dss.title");
-		map.put("dss/dss.page", "dss.refapp.title");
+		map.put("dss/dss.form", "symptom.title");
 		
 		return map;
 	}

@@ -34,7 +34,7 @@
             <dependency>
                 <groupId>org.openmrs.distro</groupId>
                 <artifactId>referenceapplication</artifactId>
-                <version>2.4</version>
+                <version>2.9.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -50,6 +50,12 @@
                 <version>2.2</version>
                 <scope>test</scope>
             </dependency>
+		<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>${jsonVersion}</version>
+			</dependency>
+
 
             <dependency>
                 <groupId>org.openmrs.module</groupId>
@@ -57,6 +63,12 @@
                 <version>${webservicesRestVersion}</version>
                 <scope>provided</scope>
             </dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>metadatadeploy-api</artifactId>
+				<version>${metadatadeployVersion}</version>
+				<scope>provided</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -82,7 +94,6 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</pluginRepository>
-		
 	</pluginRepositories>
 
 	<properties>
@@ -92,5 +103,7 @@
 		<webservicesRestVersion>2.29.0</webservicesRestVersion>
 		<gsonVersion>2.10.1</gsonVersion>
 		<lombokVersion>1.18.20</lombokVersion>
+		<metadatadeployVersion>1.10.0</metadatadeployVersion>
+		 <jsonVersion>20160212</jsonVersion>
 	</properties>
 </project>
