@@ -38,6 +38,9 @@
 		<require_module version="${metadatadeployVersion}">
 			org.openmrs.module.metadatadeploy
 		</require_module>
+		<require_module>
+			org.openmrs.module.htmlformentry
+		</require_module> 
 
 	</require_modules>
 	
@@ -125,4 +128,3 @@
 	<!-- /Internationalization -->
 	
 </module>
-
