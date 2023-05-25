@@ -1,5 +1,7 @@
 /home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/extension/html/AdminList.java
+/home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/fragment/controller/SymptomFragmentController.java
 /home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/web/controller/DssController.java
+/home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/web/controller/PatientSymptomRestController.java
+/home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/resource/SymptomResource.java
 /home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/fragment/controller/UsersFragmentController.java
 /home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/web/controller/SymptomController.java
-/home/sharif/Desktop/el/dss/omod/src/main/java/org/openmrs/module/dss/resources/SymptomResource.java

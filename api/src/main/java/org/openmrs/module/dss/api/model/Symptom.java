@@ -3,18 +3,29 @@ package org.openmrs.module.dss.api.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.openmrs.BaseOpenmrsMetadata;
+import org.openmrs.BaseOpenmrsData;
 
 @Entity(name = "dss_symptom")
 @Table(name = "dss_symptom")
-public class Symptom extends BaseOpenmrsMetadata {
+public class Symptom extends BaseOpenmrsData {
+	
+	private static final long serialVersionUID = 1L;
+	
+	public Symptom() {
+	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "dss_symptom_id")
+	private Integer Id;
 	
 	@Override
 	public String toString() {
-		return "Symptom [id=" + id + ", fever=" + fever + ", MuscleAches=" + MuscleAches + ", LossOfSmell=" + LossOfSmell
+		return "Symptom [Id=" + Id + ", fever=" + fever + ", MuscleAches=" + MuscleAches + ", LossOfSmell=" + LossOfSmell
 		        + ", PainFulBreathing=" + PainFulBreathing + ", ShortnessOfBreath=" + ShortnessOfBreath + ", JointAches="
 		        + JointAches + ", RunnyNose=" + RunnyNose + ", OtherNueral=" + OtherNueral
 		        + ", RelationshipWithContactPerson=" + RelationshipWithContactPerson + ", Diabetes=" + Diabetes
@@ -22,42 +33,52 @@ public class Symptom extends BaseOpenmrsMetadata {
 		        + ", Vomiting=" + Vomiting + ", Nuesea=" + Nuesea + ", Rash=" + Rash + "]";
 	}
 	
-	public Symptom(Integer id, String fever, String muscleAches, String lossOfSmell, String painFulBreathing,
-	    String shortnessOfBreath, String jointAches, String runnyNose, String otherNueral,
-	    String relationshipWithContactPerson, String diabetes, String soreThroats, String lossOfTaste, String occupation,
-	    String vomiting, String nuesea, String rash) {
-		this.id = id;
-		this.fever = fever;
-		MuscleAches = muscleAches;
-		LossOfSmell = lossOfSmell;
-		PainFulBreathing = painFulBreathing;
-		ShortnessOfBreath = shortnessOfBreath;
-		JointAches = jointAches;
-		RunnyNose = runnyNose;
-		OtherNueral = otherNueral;
-		RelationshipWithContactPerson = relationshipWithContactPerson;
-		Diabetes = diabetes;
-		SoreThroats = soreThroats;
-		LossOfTaste = lossOfTaste;
-		Occupation = occupation;
-		Vomiting = vomiting;
-		Nuesea = nuesea;
-		Rash = rash;
-	}
-	
-	@Id
-	@GeneratedValue
-	@Column(name = "dss_symptom_id")
-	private Integer id;
-	
 	@Override
 	public Integer getId() {
-		return id;
+		return Id;
+	}
+	
+	public Symptom(String fever, String MuscleAches, String LossOfSmell, String LossOfTaste, String painFulBreathing,
+	    String ShortnessOfBreath, String jointAches, String OtherNueral, String RunnyNose,
+	    String RelationshipWithContactPerson, String Diabetes, String SoreThroats, String Occupation, String Rash,
+	    String Vomiting, String Nuesea) {
+		setFever(fever);
+		setMuscleAches(MuscleAches);
+		setLossOfSmell(LossOfSmell);
+		setLossOfTaste(LossOfTaste);
+		setPainFulBreathing(painFulBreathing);
+		setJointAches(jointAches);
+		setOtherNueral(OtherNueral);
+		setOtherNueral(OtherNueral);
+		setRunnyNose(RunnyNose);
+		setRelationshipWithContactPerson(RelationshipWithContactPerson);
+		setDiabetes(Diabetes);
+		setSoreThroats(SoreThroats);
+		setOccupation(Occupation);
+		setRash(Rash);
+		setVomiting(Vomiting);
+		setNuesea(Nuesea);
+	}
+	
+	public boolean equals(Object obj) {
+		if (obj instanceof Symptom) {
+			Symptom sys = (Symptom) obj;
+			if (getId() != null && sys.getId() != null)
+				return getId().equals(sys.getId());
+		}
+		// if symptom id is null for either object, for equality the two objects must be the same
+		return this == obj;
+	}
+	
+	public int hashcode() {
+		if (getId() == null)
+			return super.hashCode();
+		return getId().hashCode();
 	}
 	
 	@Override
 	public void setId(Integer id) {
-		this.id = id;
+		this.Id = id;
 	}
 	
 	@Column(name = "fever")
@@ -107,11 +128,6 @@ public class Symptom extends BaseOpenmrsMetadata {
 	
 	@Column(name = "rash")
 	public String Rash;
-	
-	//our constructor below
-	
-	public Symptom() {
-	}
 	
 	public String getFever() {
 		return fever;

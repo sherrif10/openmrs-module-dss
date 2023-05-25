@@ -50,12 +50,17 @@
                 <version>2.2</version>
                 <scope>test</scope>
             </dependency>
-		<dependency>
+		    <dependency>
 				<groupId>org.json</groupId>
 				<artifactId>json</artifactId>
 				<version>${jsonVersion}</version>
 			</dependency>
-
+			 <dependency>
+				 <groupId>org.openmrs.module</groupId>
+				<artifactId>htmlformentry-api</artifactId>
+				<version>${htmlformentryVersion}</version>
+				<scope>provided</scope>
+			</dependency>
 
             <dependency>
                 <groupId>org.openmrs.module</groupId>
@@ -95,14 +100,102 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+		<build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>3.0</version>
+          <configuration>
+            <header>..${file.separator}license-header.txt</header>
+            <headerDefinitions>
+              <headerDefinition>..${file.separator}license-format.xml</headerDefinition>
+            </headerDefinitions>
+            <mapping>
+              <java>JAVA_STYLE</java>
+              <xml>MYXML_STYLE</xml>
+            </mapping>
+            <includes>
+              <include>**/*.java</include>
+              <include>**/*.xml</include>
+              <include>**/*.properties</include>
+            </includes>
+            <excludes>
+              <exclude>**/pom.xml</exclude>
+              <exclude>**/target/**</exclude>
+              <exclude>.git/**</exclude>
+              <exclude>.idea/**</exclude>
+              <exclude>.settings/**</exclude>
+              <exclude>.externalToolBuilders/</exclude>
+              <exclude>nbproject/private/</exclude>
+              <exclude>.vscode/**</exclude>
+            </excludes>
+          </configuration>
+          <executions>
+            <execution>
+              <id>check-license</id>
+              <goals>
+                <goal>check</goal>
+              </goals>
+              <phase>validate</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>2.11.0</version>
+          <configuration>
+            <lineEnding>LF</lineEnding>
+            <configFile>eclipse/OpenMRSFormatter.xml</configFile>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.openmrs.tools</groupId>
+              <artifactId>openmrs-tools</artifactId>
+              <version>${openmrsPlatformVersion}</version>
+            </dependency>
+          </dependencies>
+          <executions>
+            <execution>
+              <goals>
+                <goal>format</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code</groupId>
+          <artifactId>impsort-maven-plugin</artifactId>
+          <version>1.3.2</version>
+          <configuration>
+            <groups>javax, java, *</groups>
+            <removeUnused>true</removeUnused>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>sort</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
 	<properties>
+
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
 		<openmrsPlatformVersion>2.2.0</openmrsPlatformVersion>
         <openMRSRuntimeVersion>1.9.3</openMRSRuntimeVersion>
 		<openMRSVersion>2.0.4</openMRSVersion>
 		<webservicesRestVersion>2.29.0</webservicesRestVersion>
 		<gsonVersion>2.10.1</gsonVersion>
 		<lombokVersion>1.18.20</lombokVersion>
+		<htmlformentryVersion>3.9.2</htmlformentryVersion>
 		<metadatadeployVersion>1.10.0</metadatadeployVersion>
 		 <jsonVersion>20160212</jsonVersion>
 	</properties>

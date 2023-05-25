@@ -62,11 +62,11 @@
               </tr> 
                <tr>
                <td>
-            <input type="submit"  name="Predict" value=saveOrUpdate/>
+            <input type="submit"  name="Predict" value="<spring:message code='dss.symptom.saveOrUpdate'/>" />
 
 	</springform:form>
-                    <a href="/coreapps/clinicianfacing/patient.page?patientId=c61195ff-0e93-4799-bd49-3c1738d9c34f">
-                        <input type="button" name="Predict" value=saveOrUpdate/>
+                    <a href="/module/dss/symptom">
+                        <input type="button" name= "Predict" value="<spring:message code='dss.symptom.saveOrUpdate'/>" />
                     </a>
                 </td>
                 </tr>

@@ -1,5 +1,6 @@
-org/openmrs/module/dss/web/controller/SymptomController.class
-org/openmrs/module/dss/resources/SymptomResource.class
 org/openmrs/module/dss/extension/html/AdminList.class
+org/openmrs/module/dss/web/controller/PatientSymptomRestController.class
+org/openmrs/module/dss/resource/SymptomResource.class
+org/openmrs/module/dss/fragment/controller/SymptomFragmentController.class
 org/openmrs/module/dss/fragment/controller/UsersFragmentController.class
 org/openmrs/module/dss/web/controller/DssController.class

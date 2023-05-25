@@ -38,6 +38,9 @@
 		<require_module version="1.10.0">
 			org.openmrs.module.metadatadeploy
 		</require_module>
+		<require_module>
+			org.openmrs.module.htmlformentry
+		</require_module> 
 
 	</require_modules>
 	

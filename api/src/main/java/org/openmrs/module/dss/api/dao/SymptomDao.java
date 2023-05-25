@@ -27,7 +27,7 @@ public interface SymptomDao {
 	 * @throws DAOException
 	 */
 	@Transactional(readOnly = true)
-	public Symptom saveOrUpdate(Symptom symptoms);
+	public void saveOrUpdate(Symptom symptoms) throws DAOException;
 	
 	/**
 	 * Remove a Symptom from the dss symptom table
