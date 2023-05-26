@@ -27,32 +27,32 @@
 // import org.apache.commons.logging.LogFactory;
 
 // public class EncounterServiceRoundAdvice extends StaticMethodMatcherPointcutAdvisor implements Advisor {
-    
+
 //         // we no longer register this aop round advice since it interfers with the proper functioning of the saveEncounter() in OpenMRS core ie in the ED module
 //         private OrderService orderService;
 
 //         private AdministrationService administrationService;
-    
+
 //         private static final String TEST_CLASS = "Test";
-    
+
 //         private static final String SYMPTOM_FORM_NAME = "Symptom Form";
-    
+
 //         private static final Integer DESTINATION_CONCEPT_ID = 140238;
-    
+
 //         private static final String AIMODEL_DESTINATION = "AI ENDPOINT URL";
-    
+
 //         private Log log = LogFactory.getLog(this.getClass());
-    
+
 //         @Override
 //         public Advice getAdvice() {
 //             return new EncounterAdvice();
 //         }
-    
+
 //         private class EncounterAdvice implements MethodInterceptor {
-    
+
 //             @Override
 //             public Object invoke(MethodInvocation methodInvocation) throws Throwable {
-    
+
 //                 log.info("Round Advice for Method name :" + methodInvocation.getMethod().getName());
 //                 Object[] args = methodInvocation.getArguments();
 //                 orderService = Context.getOrderService();
@@ -65,7 +65,7 @@
 //                     log.debug("captured encounter " + encounter.getUuid());
 //                     if (encounter.getForm() != null) {
 //                         if (encounter.getForm().getName().equals(symptomFormName)) {
-    
+
 //                             Optional<Obs> destinationObs = encounter.getObs().stream()
 //                                     .filter(obs -> obs.getConcept().getConceptId().equals(DESTINATION_CONCEPT_ID))
 //                                     .findFirst();
@@ -78,7 +78,7 @@
 //                                                 testConcepts.add(obs.getValueCoded());
 //                                             }
 //                                         }
-    
+
 //                                     });
 //                                     Set<Order> orders = testConcepts.stream().map(testConcept -> {
 //                                         TestOrder order = new TestOrder();
@@ -90,7 +90,7 @@
 //                                         order.setCareSetting(careSetting);
 //                                         return order;
 //                                     }).collect(Collectors.toSet());
-    
+
 //                                     encounter.setOrders(orders);
 //                                     if (methodInvocation instanceof ReflectiveMethodInvocation) {
 //                                         ReflectiveMethodInvocation invocation = (ReflectiveMethodInvocation) methodInvocation;
@@ -99,7 +99,7 @@
 //                                     }
 //                                 }
 //                             }
-    
+
 //                             log.info("EncounterAdvice Complemented Mofidying the Form Encounter : " + symptomFormName);
 //                         }
 //                     }
@@ -107,12 +107,12 @@
 //                 return methodInvocation.proceed();
 //             }
 //         }
-    
+
 //         @Override
 //         public boolean isPerInstance() {
 //             return false;
 //         }
-    
+
 //         @Override
 //         public boolean matches(Method method, Class<?> targetClass) {
 //             if (method.getName().equals("saveEncounter")) {
