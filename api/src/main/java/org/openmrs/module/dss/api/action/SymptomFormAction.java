@@ -26,6 +26,10 @@ public class SymptomFormAction implements CustomFormSubmissionAction {
     private static final String AIMODEL_DESTINATION = "AI END POINT URL";
 
     private Log log = LogFactory.getLog(this.getClass());
+    
+    public Log getLog() {
+        return log;
+    }
 
    
     @Override
@@ -34,35 +38,34 @@ public class SymptomFormAction implements CustomFormSubmissionAction {
     
         encounterService = Context.getEncounterService();
     
-        Optional<Obs> destinationObs = symptomEncounter.getObs().stream()
-                .filter(obs -> obs.getConcept().getConceptId().equals(DESTINATION_CONCEPT_ID)).findFirst();
-        if (destinationObs.isPresent()) {
-            if (destinationObs.get().getValueText().equals(AIMODEL_DESTINATION)) {
-                Set<Concept> testConcepts = new HashSet<Concept>();
-                List<Obs> capturedObsList = new ArrayList<>();
+        if (symptomEncounter.getObs() != null) {
+            Optional<Obs> destinationObs = symptomEncounter.getObs().stream()
+                    .filter(obs -> obs.getConcept().getConceptId().equals(DESTINATION_CONCEPT_ID)).findFirst();
+            if (destinationObs.isPresent()) {
+                if (destinationObs.get().getValueText().equals(AIMODEL_DESTINATION)) {
+                    Set<Concept> testConcepts = new HashSet<>();
+                    List<Obs> capturedObsList = new ArrayList<>();
     
-                symptomEncounter.getObs().forEach(obs -> {
-                    if (obs.getValueCoded() != null) {
-                        if (obs.getValueCoded().getConceptClass().getName().equals(TEST_CLASS)) {
-                            testConcepts.add(obs.getValueCoded());
+                    symptomEncounter.getObs().forEach(obs -> {
+                        if (obs.getValueCoded() != null) {
+                            if (obs.getValueCoded().getConceptClass().getName().equals(TEST_CLASS)) {
+                                testConcepts.add(obs.getValueCoded());
+                            }
                         }
+                        capturedObsList.add(obs);
+                    });
+    
+                    symptomEncounter.setObs(symptomEncounter.getAllObs());
+                    encounterService.saveEncounter(symptomEncounter);
+    
+                    // Process captured observations
+                    for (Obs capturedObs : capturedObsList) {
+                        // Perform necessary actions on captured observations
+                        log.info("Captured Obs: " + capturedObs.getConcept().getName());
                     }
-                    capturedObsList.add(obs); // Add the observed value to the list of captured observations
-                });
-    
-                Encounter newEncounter = new Encounter();
-                newEncounter.setPatient(symptomEncounter.getPatient());
-                newEncounter.setLocation(symptomEncounter.getLocation());
-                newEncounter.setEncounterProviders(symptomEncounter.getActiveEncounterProviders());
-                newEncounter.setEncounterDatetime(symptomEncounter.getEncounterDatetime());
-                newEncounter.setEncounterType(symptomEncounter.getEncounterType());
-                encounterService.saveEncounter(newEncounter);
-    
-                // Return the list of captured observations
-                for (Obs capturedObs : capturedObsList) {
-                    log.info("Captured Obs: " + capturedObs.getConcept().getName().getName());
                 }
             }
         }
     }
-}
+ }
+
