@@ -20,9 +20,11 @@ public class EncounterServiceAfterAdvice implements AfterReturningAdvice {
            if (method.getName().equals("saveEncounter") && args[0] != null && returnValue != null) {
                Encounter encounter = (Encounter) returnValue;
                if (encounter != null && encounter.getObs() != null) {
-                   Logger.getAnonymousLogger().info("Encounter details is null");
-                   }
                    encounterService.saveEncounter(encounter);
+                   Logger.getAnonymousLogger().info("Encounter details is not null");
+                   }
+                   Logger.getAnonymousLogger().info("Encounter details is null");
+
                    Logger.getAnonymousLogger().info("Encounter details: " + encounter.toString());
                      // Log all details of the saved Encounter
                         log.debug("Saved Encounter Details:");
