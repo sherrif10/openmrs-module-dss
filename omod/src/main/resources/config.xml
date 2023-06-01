@@ -110,7 +110,10 @@
 	-->
 	<!-- /Servlets -->
 	
-	
+	<advice>
+     <point>org.openmrs.api.EncounterService</point>
+     <class>org.openmrs.module.dss.api.aspect.EncounterServiceAfterAdvice</class>
+     </advice>
 	<!-- Internationalization -->
 	<!-- All message codes should start with @MODULE_ID@.* -->
 	<messages>
