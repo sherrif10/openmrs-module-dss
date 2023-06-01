@@ -14,8 +14,8 @@
     -->
  
 <changeSet id ="20220125" author="sharif Magembe">
- <validCheckSum>8:f2489598375c26503210d38f659c6e1d</validCheckSum>
-     <validCheckSum>8:9a57de3d29ed6311f47d519adb27038f</validCheckSum>
+ <validCheckSum>3:2f4012e99d16eeff568e96586a23bd73</validCheckSum>
+     <validCheckSum>3:cb85d4ff4de4ea55ca2801b379ac2b7e</validCheckSum>
 	 <preConditions onFail="MARK_RAN">
             <not><tableExists tableName="dss_symptom"/></not>
         </preConditions>
