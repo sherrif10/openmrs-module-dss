@@ -1,6 +1,5 @@
 package org.openmrs.module.dss.api.Advice;
 
-
 import java.lang.reflect.Method;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,6 +11,7 @@ import org.openmrs.api.EncounterService;
 import org.openmrs.api.context.Context;
 import org.springframework.aop.AfterReturningAdvice;
 import java.util.logging.Logger;
+
 import org.apache.http.HttpEntity;
 
 import org.apache.http.HttpResponse;
@@ -94,8 +94,5 @@ public class EncounterServiceAfterAdvice implements AfterReturningAdvice {
       }
     }
   }
-}
-
-
 
 
