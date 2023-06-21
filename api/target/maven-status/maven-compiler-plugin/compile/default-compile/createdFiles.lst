@@ -1,7 +1,7 @@
 org/openmrs/module/dss/DssActivator.class
 org/openmrs/module/dss/api/dao/SymptomDao.class
 org/openmrs/module/dss/Item.class
-org/openmrs/module/dss/api/HtmlFormsInitializer.class
+org/openmrs/module/dss/api/advice/EncounterServiceAfterAdvice.class
 org/openmrs/module/dss/api/impl/SymptomServiceImpl.class
 org/openmrs/module/dss/api/model/Symptom.class
 org/openmrs/module/dss/api/impl/DssServiceImpl.class
