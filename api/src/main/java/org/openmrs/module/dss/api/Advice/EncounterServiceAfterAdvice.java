@@ -8,6 +8,7 @@ import org.openmrs.Concept;
 import org.openmrs.Encounter;
 import org.openmrs.Obs;
 import org.openmrs.api.EncounterService;
+import org.openmrs.api.ObsService;
 import org.openmrs.api.context.Context;
 import org.springframework.aop.AfterReturningAdvice;
 import java.util.logging.Logger;
@@ -27,7 +28,8 @@ public class EncounterServiceAfterAdvice implements AfterReturningAdvice {
 
   private Log log = LogFactory.getLog(this.getClass());
   private EncounterService encounterService = Context.getEncounterService();
-
+  private ObsService obsService = Context.getObsService();
+  
   /*
   * (non-Javadoc) * @see
   * org.springframework.aop.AfterReturningAdvice#afterReturning(java.lang.Object,
@@ -85,21 +87,45 @@ String json = "{\n" +
         // Set the JSON request body
         StringEntity requestEntity = new StringEntity(json, ContentType.APPLICATION_JSON);
         request.setEntity(requestEntity);
-        try {
-            // Execute the request
-            HttpResponse response = httpClient.execute(request);
-            // Get the response body
-            HttpEntity responseEntity = response.getEntity();
-            String responseBody = EntityUtils.toString(responseEntity);
-            // Process the response
-            Logger.getAnonymousLogger().info("******Response*******: " + responseBody);   
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-       }
 
-       
+      try {
+          
+      // Execute the request
+      HttpResponse response = httpClient.execute(request);
+      // Get the response body
+      
+      HttpEntity responseEntity = response.getEntity();
+      String responseBody = EntityUtils.toString(responseEntity);
+
+      String numericValue = responseBody.substring(responseBody.indexOf(":") + 1, responseBody.indexOf("}")).trim();
+      int intValue = Integer.parseInt(numericValue);      
+      //Map the prediction value to the appropriate concept ID
+      int predictionValueConceptId = (intValue == 0) ? 1066 : 1065;
+
+      //Create a new Obs object for the prediction value
+       String CONCEPT_UUID_FOR_PREDICTION = "prediction";
+      //using ternally operator
+      String[] CONCEPT_UUIDS_FOR_PREDICTION_VALUE = {"1066", "1067"};
+
+      Obs predictionObs = new Obs();
+
+      predictionObs.setPerson(encounter.getPatient()); // Set the person (patient) associated with the observation
+      predictionObs.setEncounter(encounter);
+      predictionObs.setValueText(CONCEPT_UUIDS_FOR_PREDICTION_VALUE[intValue]);            
+      predictionObs.setCreator(Context.getAuthenticatedUser());
+      predictionObs.setConcept(Context.getConceptService().getConcept(CONCEPT_UUID_FOR_PREDICTION)); // Replace with the appropriate concept UUID
+      predictionObs.setValueCoded(Context.getConceptService().getConcept(CONCEPT_UUIDS_FOR_PREDICTION_VALUE[intValue])); // Replace with the appropriate concept UUID
+      predictionObs.setObsDatetime(encounter.getEncounterDatetime());
+      obsService.saveObs(predictionObs, null);
+
+      Logger.getAnonymousLogger().info("******Response*******: " + predictionObs);
+      Logger.getAnonymousLogger().info("******Response*******: " + predictionValueConceptId);
+
+      } catch (Exception e) {
+          e.printStackTrace();
+      } 
     }
   }
+  }       
  }
 
