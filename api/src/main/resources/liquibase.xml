@@ -12,7 +12,7 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
- 
+ <!-- This table is currently not being used-->
 <changeSet id ="20220125" author="sharif Magembe">
  <validCheckSum>3:2f4012e99d16eeff568e96586a23bd73</validCheckSum>
      <validCheckSum>3:cb85d4ff4de4ea55ca2801b379ac2b7e</validCheckSum>
