@@ -105,7 +105,7 @@ String json = "{\n" +
       //Create a new Obs object for the prediction value
        String CONCEPT_UUID_FOR_PREDICTION = "prediction";
       //using ternally operator
-      String[] CONCEPT_UUIDS_FOR_PREDICTION_VALUE = {"1066", "1067"};
+      String[] CONCEPT_UUIDS_FOR_PREDICTION_VALUE = {"1066", "1065"};
 
       Obs predictionObs = new Obs();
 
