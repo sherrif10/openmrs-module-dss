@@ -1,0 +1,52 @@
+#set($obsClass = "org.openmrs.Obs")
+#set($encounterClass = "org.openmrs.Encounter")
+#set($conceptClass = "org.openmrs.Concept")
+#set($locationClass = "org.openmrs.Location")
+#set($personClass = "org.openmrs.Person")
+#set($calendarClass = $util.loadClass("java.util.Calendar"))
+
+#foreach($row in $outs)
+    #set($obsForParaparesis = $util.newObject($obsClass))
+    #set($concept = $util.newObject($conceptClass))
+    #set($uuid = $util.generateUuid())
+    #set($obsId = $uuid)
+
+    #set($patientId = $row.PatientId)
+    #set($sourceKey = "PatientId")
+    #set($sourceValue = $row.PatientId)
+    
+    #set($encounter = $encounterService.getEncounterByUuid($encounterUuid))
+    #if($encounter)
+        #set($locationUuid = "3b7617c9-778f-4f48-83e7-5514eb6ed946")
+        #set($location = $locationService.getLocationByUuid($locationUuid))
+        
+        #if($location)
+            #set($obsForParaparesis.uuid = $uuid)
+            #set($obsForParaparesis.person = $encounter.getPatient().getPerson())
+            #set($obsForParaparesis.encounter = $encounter)
+            #set($obsForParaparesis.valueText = $row.diarrhea)
+            #set($obsForParaparesis.creator = $util.getAuthenticatedUser())
+    
+            #set($conceptUuid = "4f07a0b2-110i3-4d51-88ff-e33292b8f35d")
+            #set($concept = $conceptService.getConceptByUuid($conceptUuid))
+            #if($concept)
+                #set($obsForParaparesis.concept = $concept)
+                
+                #set($valueCodedUuid = "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")  # Replace with the UUID of the desired coded concept
+                #set($valueCoded = $conceptService.getConceptByUuid($valueCodedUuid))
+                #if($valueCoded)
+                    #set($obsForParaparesis.valueCoded = $valueCoded)
+                    
+                    #set($obsForParaparesis.obsDatetime = $calendarClass.getInstance().getTime())
+                    $obsForParaparesis.setDateCreated($calendarClass.getInstance().getTime())
+    
+                    #set($errorLog = $util.newObject("org.openmrs.module.etllite.api.domain.ErrorLog"))
+                    #set($errorLog.sourceKey = $sourceKey)
+                    #set($errorLog.sourceValue = $sourceValue)
+    
+                    $obsService.saveObs($obsForParaparesis, null)
+                #end
+            #end
+        #end
+    #end
+#end

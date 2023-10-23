@@ -1,0 +1,151 @@
+#set($identifiers = [123456, 987654, 543210, 876543, 234567, 678903, 345670, 789014, 456701, 892345])
+
+#set($counter = 0)
+
+#foreach($row in $rows)
+
+#set($random = $Math.random() * 1000)
+
+#set($randomNumber = "$Math.floor($random)");
+
+#set($randomNumberWithoutDecimal = $randomNumber.replace(".", ""))
+
+#set($index = $counter % $identifiers.size())
+
+#set($uniqueIdentifier = $identifiers.get($index))
+
+#set($counter = $counter + 1)
+
+#set($out = {})
+
+$out.put("PatientID", $row.PatientID);
+
+$out.put("unique", $uniqueIdentifier)
+
+#if ( $row.Phone))
+
+#set($code = "+256")
+
+#set($result = $code + $row.Phone)
+
+$out.put("Phone", $result);
+
+#end
+
+$out.put("language", "English");
+
+$out.put("location", "Kampala");
+
+#if ($row.sex == "Male")
+
+$out.put("sex", "male");
+
+#else
+
+$out.put("sex", "female");
+
+#end
+
+#set($CreationDate = "08/12/2004")
+
+$out.put("CreationDate", $CreationDate);
+
+$out.put("firstName", $row.firstName);
+
+$out.put("lastName", $row.lastName);
+
+$out.put("identitifier", $row.password);
+
+$outs.add($out);
+
+#end
+
+Load Part
+
+#set($patientClass = "org.openmrs.Patient")
+
+#set($personNameClass = "org.openmrs.PersonName")
+
+#set($patientIdentifierClass = "org.openmrs.PatientIdentifier")
+
+#set($personAttributeClass = "org.openmrs.PersonAttribute")
+
+#set($calendarClass = $util.loadClass("java.util.Calendar"))
+
+#set($personAddressClass = "org.openmrs.PersonAddress")
+
+#set($personPhoneAttributeTypeName = "Telephone Number")
+
+#set($personLanguageAttributeTypeName = "personLanguage")
+
+#set($patientIdentifierTypeClass = "org.openmrs.PatientIdentifierType")
+
+#set($locationClass = "org.openmrs.Location")
+
+#foreach( $row in $outs )
+
+#set($patient = $util.newObject($patientClass))
+
+#set($uuid = $util.generateUuid())
+
+#set($patient.uuid = $uuid)
+
+#set($patient.gender = $row.sex)
+
+#set($sourceKey = "PatientID");
+
+#set($sourceValue = $row.PatientID);
+
+#set($patient.birthdateEstimated = true)
+
+#set($patient.birthdate = "25 Aug 2000")
+
+#set($identifierTypeUuid = "05a29f94-c0ed-11e2-94be-8c13b969e334")
+
+#set($locationUuid = "3b7617c9-778f-4f48-83e7-5514eb6ed946")
+
+#set($identifierType = $patientService.getPatientIdentifierTypeByUuid($identifierTypeUuid))
+
+#set($location = $locationService.getLocationByUuid($locationUuid))
+
+#set($patientIdentifier = $util.newObject($patientIdentifierClass))
+
+#set($patientIdentifier.identifier = "$row.PatientID")
+
+#set($patientIdentifier.identifierType = $identifierType)
+
+#set($patientIdentifier.location = $location)
+
+$patient.addIdentifier($patientIdentifier)
+
+#set($patientName = $util.newObject($personNameClass))
+
+#set($patientName.preferred = true)
+
+#* #set($patientName.givenName = $row.username) *#
+
+#set($patientName.givenName = $row.firstName)
+
+#set($patientName.firstName = $row.firstName)
+
+#set($patientName.lastName = $row.lastName)
+
+$patient.addName($patientName)
+
+#set($personAddress = $util.newObject($personAddressClass))
+
+#set($personAddress.preferred = true)
+
+#set($personAddress.address1 = "Kampala Najjera")
+
+$patient.addAddress($personAddress)
+
+#set($errorLog = $util.newObject("org.openmrs.module.etllite.api.domain.ErrorLog"))
+
+#set($errorLog.sourceKey = $sourceKey)
+
+#set($errorLog.sourceValue = $sourceValue)
+
+$patientService.savePatient($patient)
+
+#end
