@@ -26,40 +26,41 @@ public class SymptomETL {
 	
 	private Log log = LogFactory.getLog(SymptomETL.class);
 	
-	private static final String JDBC_URL = "jdbc:sqlserver://196.43.147.254:1433;databaseName=icea-views";
+	//private static final String JDBC_URL = "jdbc:sqlserver://196.43.147.254:1433;databaseName=icea-views";
 	
-	private static final String JDBC_USER = "tama";
+	//private static final String JDBC_USER = "username";
 	
-	private static final String JDBC_PASSWORD = "@cad3myCa114L1f3";
+	//private static final String JDBC_PASSWORD = "password";
 	
 	private ObsService obsService = Context.getObsService();
 	
 	private PatientService patientService = Context.getPatientService();
 	
 	private LocationService locationService = Context.getLocationService();
-
-    private boolean jobRunning = false;
-
-    //method to run periodically
-    public void scheduleJob() {
-        //check if the job is running, if yes, skip the execution
-        if (jobRunning) {
-            log.warn("Job is already running. Skipping this execution.");
-            return;
-        }
-
-        try {
-            jobRunning = true;
-
-            // Your existing logic to connect to the database and select data
-            connectToDatabaseAndSelectData();
-
-            log.info("Scheduled job completed successfully.");
-        } finally {
-            jobRunning = false;
-        }
-    }
-    
+	
+	private boolean jobRunning = false;
+	
+	//method to run periodically
+	public void scheduleJob() {
+		//check if the job is running, if yes, skip the execution
+		if (jobRunning) {
+			log.warn("Job is already running. Skipping this execution.");
+			return;
+		}
+		
+		try {
+			jobRunning = true;
+			
+			// Your existing logic to connect to the database and select data
+			connectToDatabaseAndSelectData();
+			
+			log.info("Scheduled job completed successfully.");
+		}
+		finally {
+			jobRunning = false;
+		}
+	}
+	
 	public void connectToDatabaseAndSelectData() {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -203,6 +204,5 @@ Context.getEncounterService().saveEncounter(encounter);
         }
 
     }
-
-    
+	
 }
