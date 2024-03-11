@@ -1,4 +1,4 @@
-package org.openmrs.module.basicmodule.advice;
+package org.openmrs.module.dss.api.Advice;
 
 import java.lang.reflect.Method;
 import org.apache.commons.logging.Log;
