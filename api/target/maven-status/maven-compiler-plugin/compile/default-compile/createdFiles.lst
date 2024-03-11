@@ -1,13 +1,12 @@
 org/openmrs/module/dss/DssActivator.class
 org/openmrs/module/dss/api/dao/SymptomDao.class
+org/openmrs/module/dss/api/advice/SymptomETL.class
 org/openmrs/module/dss/Item.class
-org/openmrs/module/dss/api/advice/EncounterServiceAfterAdvice.class
 org/openmrs/module/dss/api/impl/SymptomServiceImpl.class
 org/openmrs/module/dss/api/model/Symptom.class
 org/openmrs/module/dss/api/impl/DssServiceImpl.class
 org/openmrs/module/dss/DssConfig.class
 org/openmrs/module/dss/api/SymptomService.class
-org/openmrs/module/dss/api/Initializer.class
 org/openmrs/module/dss/api/dao/DssDao.class
 org/openmrs/module/dss/api/DssMetadataBundle$1.class
 org/openmrs/module/dss/api/dao/impl/SymptomDaoImpl.class

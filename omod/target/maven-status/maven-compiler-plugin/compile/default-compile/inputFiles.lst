@@ -1,5 +1,5 @@
-/home/sharif/Pictures/openmrs-module-dss/omod/src/main/java/org/openmrs/module/dss/web/controller/DssController.java
-/home/sharif/Pictures/openmrs-module-dss/omod/src/main/java/org/openmrs/module/dss/web/controller/SymptomController.java
-/home/sharif/Pictures/openmrs-module-dss/omod/src/main/java/org/openmrs/module/dss/extension/html/AdminList.java
-/home/sharif/Pictures/openmrs-module-dss/omod/src/main/java/org/openmrs/module/dss/resources/SymptomResource.java
-/home/sharif/Pictures/openmrs-module-dss/omod/src/main/java/org/openmrs/module/dss/fragment/controller/UsersFragmentController.java
+/home/sharif/Documents/payslips/openmrs-module-dss/omod/src/main/java/org/openmrs/module/dss/resources/SymptomResource.java
+/home/sharif/Documents/payslips/openmrs-module-dss/omod/src/main/java/org/openmrs/module/dss/web/controller/DssController.java
+/home/sharif/Documents/payslips/openmrs-module-dss/omod/src/main/java/org/openmrs/module/dss/extension/html/AdminList.java
+/home/sharif/Documents/payslips/openmrs-module-dss/omod/src/main/java/org/openmrs/module/dss/fragment/controller/UsersFragmentController.java
+/home/sharif/Documents/payslips/openmrs-module-dss/omod/src/main/java/org/openmrs/module/dss/web/controller/SymptomController.java
