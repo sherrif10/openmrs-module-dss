@@ -108,8 +108,7 @@ public class Symptom extends BaseOpenmrsMetadata {
 	@Column(name = "rash")
 	public String Rash;
 	
-	//our constructor below
-	
+
 	public Symptom() {
 	}
 	

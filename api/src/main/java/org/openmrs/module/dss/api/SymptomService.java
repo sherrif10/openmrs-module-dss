@@ -11,7 +11,6 @@ public interface SymptomService extends OpenmrsService {
 	
 	/**
 	 * Gets a symptom by id
-	 * 
 	 * @param string
 	 * @return
 	 */
@@ -25,7 +24,6 @@ public interface SymptomService extends OpenmrsService {
 	
 	/**
 	 * Adds or updates a specific flag in the database
-	 * 
 	 * @param symptoms the symptom to add or update
 	 * @return
 	 * @throws Exception

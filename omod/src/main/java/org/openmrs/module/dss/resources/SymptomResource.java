@@ -1,4 +1,4 @@
-package org.openmrs.module.dss.resources;
+qpackage org.openmrs.module.dss.resources;
 
 import java.util.Arrays;
 import java.util.List;
